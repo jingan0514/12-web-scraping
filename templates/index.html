@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+      <div class="jumbotron text-center">
+          <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+      </div>
+
+      <h1>Latest Mars News</h1>
+      <h4><strong>{{listings.news_title}}</strong></h4>
+      <p>{{listings.news_p}}</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+            <h1>Featured Mars Image</h1>
+            <img src={{listings.featured_image_url}} alt="Featured Mars Image" class="mw-100">
+        </div>
+
+        <div class="col-4">
+            <div class="card" style="width: 36rem">
+              <div class="card-body">
+                <h4 class="card-title">Current Weather on Mars</h4>
+                <p class="card-text">{{listings.mars_weather}}</p>
+              </div>
+            </div>
+
+            <br><br>
+
+            {{ listings.mars_fact_table | safe }}
+
+        </div> 
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <h1>Mars Hemispheres</h1>
+        <hr>
+      <div class="row">
+        {% for item in listings.hemisphere_image_urls %}
+        <div class="col-6">
+          <img src={{item.img_url}} alt="{{item.title}}" class="mw-100">
+          <h2>{{item.title}}</h2>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+</body>
+</html>
